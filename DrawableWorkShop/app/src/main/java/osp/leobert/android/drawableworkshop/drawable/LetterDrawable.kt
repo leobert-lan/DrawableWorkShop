@@ -51,11 +51,18 @@ class LetterDrawable : Drawable() {
     val tag = "LetterDrawable"
 
     var letter: String = "A"
+        set(value) {
+            field = value
+            width = null
+            height = null
+            invalidateSelf()
+        }
 
     var color: Int = Color.CYAN
         set(value) {
             field = value
             paint.color = value
+            invalidateSelf()
         }
 
     var textSize: Float = 60f
@@ -64,6 +71,7 @@ class LetterDrawable : Drawable() {
             width = null
             height = null
             paint.textSize = value
+            invalidateSelf()
         }
 
     private val paint = Paint().apply {
@@ -73,6 +81,14 @@ class LetterDrawable : Drawable() {
 
     private var width by Size(0)
     private var height by Size(1)
+
+    override fun getIntrinsicHeight(): Int {
+        return height?.toInt() ?: -1
+    }
+
+    override fun getIntrinsicWidth(): Int {
+        return width?.toInt() ?: -1
+    }
 
     override fun draw(canvas: Canvas) {
         Log.d(tag, "on draw,$letter , $height")
