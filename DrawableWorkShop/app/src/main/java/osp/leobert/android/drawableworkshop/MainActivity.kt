@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnChangeColor.setOnClickListener {
             letterDrawable?.let {
                 Log.d(tag,"has callback: ${it.callback == null}")
-                it.paint.color = Color.MAGENTA
+                it.color = Color.MAGENTA
                 it.invalidateSelf()
             }
         }
