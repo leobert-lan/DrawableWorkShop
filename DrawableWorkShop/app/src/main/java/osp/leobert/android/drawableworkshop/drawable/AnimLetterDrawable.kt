@@ -104,9 +104,12 @@ class AnimLetterDrawable : Drawable(), Animatable2, Runnable {
     override fun draw(canvas: Canvas) {
         Log.d(tag, "on draw,$letters , $height,$frameIndex")
 
-        val progress = frameIndex.toFloat() / totalFrames.toFloat()
-
-
+        val progress = if (totalFrames > 1) {
+            frameIndex.toFloat() / (totalFrames - 1).toFloat()
+        } else {
+            1f
+        }
+        
         paint.alpha = min(255, (255 * progress).toInt() + 100)
 
         for (i in letters.indices) {

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:textSize="40sp"
     android:color="#ff3c06"
-    android:text="L">
+    android:text="Leobert">
 
 
 </osp.leobert.android.drawableworkshop.drawable.AnimLetterDrawable>
