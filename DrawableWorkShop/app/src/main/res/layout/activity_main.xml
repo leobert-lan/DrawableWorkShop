@@ -11,16 +11,16 @@
         android:layout_height="wrap_content"
         android:background="#f9f9f9"
         android:divider="@drawable/divider"
-        android:showDividers="middle"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:showDividers="middle">
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="text"
-            android:drawableTop="@drawable/letter_drawable" />
-
+            android:drawableTop="@drawable/letter_drawable"
+            android:text="text" />
 
 
         <View
@@ -31,13 +31,13 @@
             android:layout_weight="1"
             android:background="@drawable/letter_drawable" />
 
-<!--        <View-->
-<!--            android:id="@+id/test_view2"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="100dp"-->
-<!--            android:layout_margin="5dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:background="@drawable/letter_drawable" />-->
+        <!--        <View-->
+        <!--            android:id="@+id/test_view2"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="100dp"-->
+        <!--            android:layout_margin="5dp"-->
+        <!--            android:layout_weight="1"-->
+        <!--            android:background="@drawable/letter_drawable" />-->
 
 
         <ImageView
@@ -58,8 +58,34 @@
     <Button
         android:id="@+id/btn_change_color"
         android:layout_width="wrap_content"
-        android:text="change color"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="change color" />
 
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="#f9f9f9"
+        android:padding="5dp">
+
+        <View
+            android:id="@+id/view_anim"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/anim_letter_drawable" />
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btn_start_anim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="start anim" />
+
+    <Button
+        android:id="@+id/btn_stop_anim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="stop anim"/>
 
 </LinearLayout>

@@ -118,11 +118,16 @@ class LetterDrawable : Drawable() {
         letter = a.getString(R.styleable.letter_drawable_android_text) ?: "A"
 
         textSize = a.getDimension(R.styleable.letter_drawable_android_textSize, 60f)
-        color = a.getColor(R.styleable.letter_drawable_color, Color.CYAN)
+        color = a.getColor(R.styleable.letter_drawable_android_color, Color.CYAN)
 
         a.recycle()
 
         paint.color = color
         paint.textSize = textSize
+    }
+
+    override fun onBoundsChange(bounds: Rect) {
+        super.onBoundsChange(bounds)
+        Log.d(tag,"onBoundsChange, $bounds")
     }
 }

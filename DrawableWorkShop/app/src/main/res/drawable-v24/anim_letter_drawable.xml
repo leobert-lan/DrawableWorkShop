@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<osp.leobert.android.drawableworkshop.drawable.LetterDrawable
+<osp.leobert.android.drawableworkshop.drawable.AnimLetterDrawable
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:textSize="40sp"
     android:color="#ff3c06"
-    android:text="@string/letters">
+    android:text="L">
 
 
-</osp.leobert.android.drawableworkshop.drawable.LetterDrawable>
+</osp.leobert.android.drawableworkshop.drawable.AnimLetterDrawable>

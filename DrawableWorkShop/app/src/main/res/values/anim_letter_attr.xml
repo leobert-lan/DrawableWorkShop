@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <declare-styleable name="letter_drawable">
+    <declare-styleable name="anim_letter_drawable">
         <attr name="android:text" format="string|reference"/>
         <attr name="android:color" format="color|reference"/>
         <attr name="android:textSize" format="dimension|reference"/>
