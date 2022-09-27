@@ -1,5 +1,6 @@
 package osp.leobert.android.drawableworkshop
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.Animatable
 import android.os.Bundle
@@ -47,7 +48,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
 
     }
 }
