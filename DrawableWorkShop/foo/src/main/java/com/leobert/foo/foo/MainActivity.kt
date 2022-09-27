@@ -1,9 +1,8 @@
 package com.leobert.foo.foo
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.leobert.foo.R
 
 class MainActivity : AppCompatActivity() {
