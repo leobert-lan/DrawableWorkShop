@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.Log
 import android.util.SparseArray
+import android.view.animation.LinearInterpolator
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import org.xmlpull.v1.XmlPullParser
 import osp.leobert.android.drawableworkshop.R
@@ -83,7 +84,7 @@ class AnimLetterDrawable2 : Drawable(), Animatable {
     private val valueAnimator = ValueAnimator.ofInt(totalFrames).apply {
         duration = 3000L
 
-        this.interpolator = FastOutSlowInInterpolator()
+        this.interpolator = LinearInterpolator()
 
         addUpdateListener {
             setFrame(it.animatedValue as Int)
