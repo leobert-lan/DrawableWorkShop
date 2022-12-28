@@ -1,12 +1,16 @@
 package osp.leobert.android.drawableworkshop
 
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.Animatable
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ImageSpan
 import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import osp.leobert.android.drawableworkshop.databinding.ActivityMainBinding
+import osp.leobert.android.drawableworkshop.drawable.AnimLetterDrawable2
 import osp.leobert.android.drawableworkshop.drawable.LetterDrawable
 
 class MainActivity : AppCompatActivity() {
@@ -49,5 +53,32 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
+        val tvSpan = findViewById<TextView>(R.id.tv_span)
+
+        val drawable = createADrawable()
+        val imgSpan = ImageSpan(drawable)
+
+        val ss = SpannableString("ImageSpan *")
+        ss.setSpan(imgSpan, 10, 11, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        tvSpan.text = ss
+
+        val drawableStart = createADrawable()
+        tvSpan.setCompoundDrawables(drawableStart,null,null,null)
+
+        tvSpan.setOnClickListener {
+            drawable.start()
+            drawableStart.start()
+        }
+
+
+    }
+
+    fun createADrawable(): AnimLetterDrawable2 {
+        val drawable = AnimLetterDrawable2()
+        drawable.textSize = 20f
+        drawable.letters = "span"
+        drawable.setBounds(0, 0, 100, 100)
+        return drawable
     }
 }
