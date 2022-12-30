@@ -7,9 +7,13 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.text.style.ImageSpan
 import android.util.Log
+import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import osp.leobert.android.drawableworkshop.databinding.ActivityMainBinding
 import osp.leobert.android.drawableworkshop.drawable.AnimLetterDrawable2
@@ -117,7 +121,16 @@ class MainActivity : AppCompatActivity() {
                 it.start()
             }
         }
+        tvSpan2.movementMethod = LinkMovementMethod.getInstance()
 
+        val tvSpan3 = findViewById<TextView>(R.id.tv_span3)
+        tvSpan3.text = infoBuilder
+        tvSpan3.setOnClickListener {
+            drawables.forEach {
+                it.start()
+            }
+        }
+        tvSpan3.movementMethod = LinkMovementMethod.getInstance()
     }
 
     fun createADrawable(): AnimLetterDrawable2 {
@@ -139,6 +152,14 @@ class MainActivity : AppCompatActivity() {
         val imgSpan = ImageSpan(drawable)
         val ss = SpannableString(" *")
         ss.setSpan(imgSpan, 1, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        ss.setSpan(object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                Toast.makeText(this@MainActivity, madel, Toast.LENGTH_SHORT).show()
+            }
+        }, 1, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+
         builder.append(ss)
 
         return drawable
