@@ -2,9 +2,11 @@ package osp.leobert.android.drawableworkshop
 
 import android.graphics.Color
 import android.graphics.drawable.Animatable
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
+import android.text.SpannableStringBuilder
 import android.text.style.ImageSpan
 import android.util.Log
 import android.widget.TextView
@@ -64,13 +66,57 @@ class MainActivity : AppCompatActivity() {
         tvSpan.text = ss
 
         val drawableStart = createADrawable()
-        tvSpan.setCompoundDrawables(drawableStart,null,null,null)
+        tvSpan.setCompoundDrawables(drawableStart, null, null, null)
 
         tvSpan.setOnClickListener {
+//            drawable.callback = it //这种方式无效，Drawable和TextView之间无关联
+            drawable.callback = object : Drawable.Callback {
+                override fun invalidateDrawable(who: Drawable) {
+                    it.invalidate()
+                }
+
+                override fun scheduleDrawable(who: Drawable, what: Runnable, `when`: Long) {
+                    it.scheduleDrawable(who, what, `when`)
+                }
+
+                override fun unscheduleDrawable(who: Drawable, what: Runnable) {
+                    it.unscheduleDrawable(who, what)
+                }
+
+            }
             drawable.start()
-            drawableStart.start()
+//            drawableStart.start()
         }
 
+        val tvSpan2 = findViewById<TextView>(R.id.tv_span2)
+        val infoBuilder = SpannableStringBuilder().append("Leobert")
+
+        val madels = arrayListOf<String>("Lv.10", "持续创造", "笔耕不追", "夜以继日")
+        val drawables: List<AnimLetterDrawable2> = madels.map { madel ->
+            appendMadel(infoBuilder, madel).let { drawable ->
+                drawable.callback = object : Drawable.Callback {
+                    override fun invalidateDrawable(who: Drawable) {
+                        tvSpan2.invalidate()
+                    }
+
+                    override fun scheduleDrawable(who: Drawable, what: Runnable, `when`: Long) {
+                        tvSpan2.scheduleDrawable(who, what, `when`)
+                    }
+
+                    override fun unscheduleDrawable(who: Drawable, what: Runnable) {
+                        tvSpan2.unscheduleDrawable(who, what)
+                    }
+                }
+                drawable
+            }
+        }
+
+        tvSpan2.text = infoBuilder
+        tvSpan2.setOnClickListener {
+            drawables.forEach {
+                it.start()
+            }
+        }
 
     }
 
@@ -79,6 +125,22 @@ class MainActivity : AppCompatActivity() {
         drawable.textSize = 20f
         drawable.letters = "span"
         drawable.setBounds(0, 0, 100, 100)
+
+
+        return drawable
+    }
+
+    fun appendMadel(builder: SpannableStringBuilder, madel: String): AnimLetterDrawable2 {
+        val drawable = AnimLetterDrawable2()
+        drawable.textSize = 20f
+        drawable.letters = madel
+        drawable.setBounds(0, 0, 100, 100)
+
+        val imgSpan = ImageSpan(drawable)
+        val ss = SpannableString(" *")
+        ss.setSpan(imgSpan, 1, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        builder.append(ss)
+
         return drawable
     }
 }
